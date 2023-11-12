@@ -1,17 +1,13 @@
-import * as React from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
-import { useRef } from 'react';
-import { useEffect } from 'react';
 
-function MCQAnswers(props) {
-    /** states for answers
-     * 0 - nothing
-     * 1 - correct answer and chosen
-     * 2 - correct answer but not chosen
-     * 3 - incorrect due to chosen
-     */
-    const greenTranslation = useRef(new Animated.Value(0)).current;
-    const redTranslation = useRef(new Animated.Value(0)).current;
+interface MCQAnswersProps {
+    state: number;
+}
+
+const MCQAnswers: FC<MCQAnswersProps> = (props) => {
+    const greenTranslation = useRef<Animated.Value>(new Animated.Value(0)).current;
+    const redTranslation = useRef<Animated.Value>(new Animated.Value(0)).current;
 
     const greenStyles = {
         transform: [
@@ -35,13 +31,13 @@ function MCQAnswers(props) {
     };
 
     useEffect(() => {
-        if (props.state == 1 || props.state == 2) {
+        if (props.state === 1 || props.state === 2) {
             Animated.timing(greenTranslation, {
                 toValue: 100,
                 duration: 1000,
                 useNativeDriver: true,
             }).start()
-        } else if (props.state == 3) {
+        } else if (props.state === 3) {
             Animated.timing(redTranslation, {
                 toValue: 100,
                 duration: 1000,

@@ -1,17 +1,23 @@
-import * as React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, start } from '@utils/timerSlice';
+import { increment, start } from '../utils/timerSlice';
 
-import commonStyles from '@styles/common';
-import utils from '@utils/utils';
+import commonStyles from '../styles/common';
+import utils from '../utils/utils';
 
-function HomeHeader() {
-  const count = useSelector(state => state.timer.value)
-  const timerStarted = useSelector(state => state.timer.start)
+interface RootState {
+  timer: {
+    value: number;
+    start: boolean;
+  }
+}
+
+function HomeHeader(): JSX.Element {
+  const count: number = useSelector((state: RootState) => state.timer.value)
+  const timerStarted: boolean = useSelector((state: RootState) => state.timer.start)
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -21,7 +27,7 @@ function HomeHeader() {
         dispatch(increment())
       }, 1000)
     }
-  }, [dispatch])
+  }, [dispatch, timerStarted])
 
   return (
     <View style={[ commonStyles.row, commonStyles.header ]}>

@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { View, Text } from 'react-native';
 
-function Bookmark() {
+const Bookmarks: FC = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Bookmark</Text>
+      <Text>Bookmarks</Text>
     </View>
   );
 }
 
-export default Bookmark;
+export default Bookmarks;

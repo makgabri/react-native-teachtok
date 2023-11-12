@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { View, Text } from 'react-native';
 
-function Discover() {
+const Profile: FC = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Discover</Text>
+      <Text>Profile</Text>
     </View>
   );
 }
 
-export default Discover;
+export default Profile;

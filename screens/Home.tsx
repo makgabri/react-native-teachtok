@@ -1,23 +1,20 @@
-import * as React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, ActivityIndicator, FlatList, Dimensions, Alert } from 'react-native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
-import commonStyles from '@styles/common';
-import api from '@api/fetch';
+import commonStyles from '../styles/common';
+import api from '../api/fetch';
 import { useDispatch, useSelector } from 'react-redux';
 
-import QuestionTile from "@components/QuestionTile.js"
-import { useState } from 'react';
-import { resetMCQs } from '@utils/questionSlice';
-
+import QuestionTile from "../components/QuestionTile.tsx"
+import { resetMCQs } from '../utils/questionSlice';
 
 function Home() {
   const dispatch = useDispatch()
-  const mcq = useSelector(state => state.mcq)
-  const renderFirstQuestion = mcq.currentQuestionCount == 0
-  const calculatedHeight = Dimensions.get("window").height - useBottomTabBarHeight()
-  const [showAlert, setShowAlert] = useState(false)
+  const mcq = useSelector((state: any) => state.mcq)
+  const renderFirstQuestion: boolean = mcq.currentQuestionCount === 0
+  const calculatedHeight: number = Dimensions.get("window").height - useBottomTabBarHeight()
+  const [showAlert, setShowAlert] = useState<boolean>(false)
 
   useEffect(() => {
     if (!mcq.error && showAlert) return setShowAlert(false)

@@ -9,29 +9,28 @@ import { Provider } from 'react-redux'
 
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import HomeHeader from "@components/HomeHeader.js"
-import Home from "@screens/Home.js"
-import Bookmarks from "@screens/Bookmarks.js"
-import Activity from "@screens/Activity.js"
-import Discover from "@screens/Discover.js"
-import Profile from "@screens/Profile.js"
+import HomeHeader from "./components/HomeHeader.tsx"
+import Home from "./screens/Home.tsx"
+import Bookmarks from "./screens/Bookmarks.tsx"
+import Activity from "./screens/Activity.tsx"
+import Discover from "./screens/Discover.tsx"
+import Profile from "./screens/Profile.tsx"
 
-
-export default function App() {
+export default function App(): JSX.Element {
 
   const HomeStack = createNativeStackNavigator();
 
-  function HomeStackScreen() {
+  const HomeStackScreen = () => {
     return (
       <HomeStack.Navigator>
-        <HomeStack.Screen  name="HomeStack" component={Home} options={{ header: (props) => <HomeHeader {...props} /> }} />
+        <HomeStack.Screen  name="HomeStack" component={Home} options={{ header: (props: any) => <HomeHeader {...props} /> }} />
       </HomeStack.Navigator>
     );
   }
 
   const Tab = createBottomTabNavigator();
 
-  const entypoIcon = (iconName, color, size) => { return (<Entypo name={iconName} size={size} color={color} />)}
+  const entypoIcon = (iconName: string, color: string, size: number): JSX.Element => { return (<Entypo name={iconName} size={size} color={color} />)}
 
   return (
     <Provider store={store}>

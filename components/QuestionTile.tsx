@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import commonStyles from '@styles/common';
+import commonStyles from '../styles/common';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -9,8 +8,24 @@ import Avatar from './Avatar';
 import QuestionActivity from './QuestionActivity'
 import MCQ from './MCQ'
 
-function QuestionTile(props) {
-    const [bgImageLoaded, setBgImageLoaded] = useState(false)
+interface QuestionTileProps {
+    tileHeight: number;
+    data: {
+        image: string;
+        question: string;
+        id: string;
+        options: { id: string, answer: string }[];
+        user?: {
+            name: string;
+            avatar: string;
+        };
+        description: string;
+        playlist: string;
+    };
+}
+
+const QuestionTile: FC<QuestionTileProps> = (props) => {
+    const [bgImageLoaded, setBgImageLoaded] = useState<boolean>(false);
 
     return (
         <View style={{ flex: 1, alignItems: 'flex-start', flexDirection: 'column', justifyContent: 'flex-end', height: props.tileHeight, width: '100%' }}>
@@ -20,7 +35,16 @@ function QuestionTile(props) {
                 </View>}
             <Image
                 onLoad={() => {setBgImageLoaded(true)}}
-                style={[commonStyles.container, { position:'absolute', width: '100%', height: '100%' }]} source={{uri: props.data.image}} resizeMode='stretch'
+                style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    position:'absolute',
+                    width: '100%',
+                    height: '100%'
+                }}
+                source={{uri: props.data.image}}
+                resizeMode='stretch'
             />
             <View style={{ height: '35%', width: '80%', padding: 20, justifyContent: 'flex-start' }}>
                 <Text adjustsFontSizeToFit allowFontScaling
@@ -36,7 +60,7 @@ function QuestionTile(props) {
                         </View>
                     </View>
                     <View style={{ flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', width: 30 }}>
-                        <Avatar uri={props.data.user.avatar} />
+                        <Avatar source={props.data.user.avatar} />
                         <QuestionActivity type={'heart'} iconBank={'Feather'} />
                         <QuestionActivity type={'chatbubble-ellipses-outline'} iconBank={'Ionicons'} />
                         <QuestionActivity type={'bookmark'} iconBank={'Entypo'} />

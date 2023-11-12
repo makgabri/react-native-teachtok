@@ -1,6 +1,19 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ViewStyle, TextStyle, ImageStyle } from 'react-native';
 
-const commonStyles = StyleSheet.create({
+interface CommonStyles {
+    container: ViewStyle;
+    row: ViewStyle;
+    column: ViewStyle;
+    header: ViewStyle;
+    title: TextStyle;
+    question: TextStyle;
+    avatar: ImageStyle;
+    addition: ViewStyle;
+    questionBox: ViewStyle;
+    mcqAnswer: TextStyle;
+}
+
+const commonStyles: CommonStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -74,6 +87,6 @@ const commonStyles = StyleSheet.create({
         textShadowColor:'#585858',
         textShadowRadius:3
     }
-})
+});
 
-export default commonStyles
+export default commonStyles;

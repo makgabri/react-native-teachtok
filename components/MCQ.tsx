@@ -1,19 +1,28 @@
-import * as React from 'react';
-import { Text, View, TouchableOpacity, Animated } from 'react-native';
-import commonStyles from '@styles/common';
+import React, { FC } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import commonStyles from '../styles/common';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import api from "@api/fetch"
+import api from "../api/fetch"
 import MCQAnswers from './MCQAnswer';
-import GreenThumbsUpComponent from '@styles/thumbsupgreen';
-import RedThumbsDownComponent from '@styles/thumbsdownred';
+import GreenThumbsUpComponent from '../styles/thumbsupgreen';
+import RedThumbsDownComponent from '../styles/thumbsdownred';
 
-function MCQ(props) {
-    const [selectedAnswer, setSelectedAnswer] = useState(null)
+interface MCQProps {
+    id: string;
+    data: { id: string, answer: string }[];
+}
+
+interface QuestionStore {
+    mcq: { answers: { [id: string]: string[] } }
+}
+
+const MCQ: FC<MCQProps> = (props) => {
+    const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
     const dispatch = useDispatch()
-    const answer = useSelector(state => state.mcq.answers[props.id])
+    const answer = useSelector((state: QuestionStore) => state.mcq.answers[props.id])
 
-    const handleSelect = (id) => {
+    const handleSelect = (id: string) => {
         if (!selectedAnswer) {
             setSelectedAnswer(id)
             api.getAnswer(dispatch, props.id)
@@ -26,7 +35,7 @@ function MCQ(props) {
      * 2 - correct answer but not chosen
      * 3 - incorrect due to chosen
      */
-    const determineState = (id) => {
+    const determineState = (id: string) => {
         if (selectedAnswer === null) return 0
         if (answer == undefined) return 0
         if (answer.includes(id)) {
