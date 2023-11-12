@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Text, View, TouchableOpacity, Animated } from 'react-native';
-import commonStyles from '../styles/common';
-import { useState, useRef } from 'react';
+import commonStyles from '@styles/common';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import api from "@api/fetch"
 import MCQAnswers from './MCQAnswer';
-import GreenThumbsUpComponent from '../styles/thumbsupgreen';
-import RedThumbsDownComponent from '../styles/thumbsdownred';
+import GreenThumbsUpComponent from '@styles/thumbsupgreen';
+import RedThumbsDownComponent from '@styles/thumbsdownred';
 
 function MCQ(props) {
     const [selectedAnswer, setSelectedAnswer] = useState(null)
@@ -21,11 +20,12 @@ function MCQ(props) {
         }
     }
 
-    // 1. No selection all 0 state
-    // 2. Selected so:
-    // 2.a if answer is not selected and not correct, remain 0
-    // 2.b if answer is selected and correct, change to 1
-    // 2.c if answer is selected and incorrect, change to 2
+    /** states for answers
+     * 0 - nothing
+     * 1 - correct answer and chosen
+     * 2 - correct answer but not chosen
+     * 3 - incorrect due to chosen
+     */
     const determineState = (id) => {
         if (selectedAnswer === null) return 0
         if (answer == undefined) return 0

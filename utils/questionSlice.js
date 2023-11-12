@@ -5,7 +5,9 @@ export const questionSlice = createSlice({
   initialState: {
     questions: [],
     currentQuestionCount: 0,
-    answers: {}
+    answers: {},
+    error: false,
+    errorMessage: ''
   },
   reducers: {
     addQuestion: (state, question) => {
@@ -17,10 +19,21 @@ export const questionSlice = createSlice({
       if (answerId && !Object.keys(state.answers).includes(answerId)) {
         state.answers[answerId] = answer.payload?.correct_options.map(data => data.id)
       }
+    },
+    setError: (state, message) => {
+      state.error = true,
+      state.errorMessage = message.payload
+    },
+    resetMCQs: (state) => {
+      state.questions = []
+      state.currentQuestionCount = 0
+      state.answers = {}
+      state.error = false
+      state.errorMessage = ''
     }
   }
 })
 
-export const { addQuestion, addAnswer } = questionSlice.actions
+export const { addQuestion, addAnswer, setError, resetMCQs } = questionSlice.actions
 
 export default questionSlice.reducer

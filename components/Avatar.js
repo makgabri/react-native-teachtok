@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 
-import commonStyles from '../styles/common';
+import commonStyles from '@styles/common';
 
 function Avatar(props) {
     const [avatarLoaded, setAvatarLoaded] = useState(false)

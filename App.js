@@ -10,7 +10,6 @@ import { Provider } from 'react-redux'
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import HomeHeader from "@components/HomeHeader.js"
-import Footer from "@components/Footer.js"
 import Home from "@screens/Home.js"
 import Bookmarks from "@screens/Bookmarks.js"
 import Activity from "@screens/Activity.js"

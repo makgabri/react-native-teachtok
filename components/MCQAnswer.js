@@ -8,7 +8,7 @@ function MCQAnswers(props) {
      * 0 - nothing
      * 1 - correct answer and chosen
      * 2 - correct answer but not chosen
-     * 3 - incorrect
+     * 3 - incorrect due to chosen
      */
     const greenTranslation = useRef(new Animated.Value(0)).current;
     const redTranslation = useRef(new Animated.Value(0)).current;

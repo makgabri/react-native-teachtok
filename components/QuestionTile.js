@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import commonStyles from '../styles/common';
+import commonStyles from '@styles/common';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 

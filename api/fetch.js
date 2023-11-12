@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as endpoints from './endpoints.json'
 
-import { addQuestion, addAnswer } from '@utils/questionSlice';
+import { addQuestion, addAnswer, setError } from '@utils/questionSlice';
 
 
 const api = {
@@ -10,7 +10,7 @@ const api = {
             .then((data) => {
                 dispatch(addQuestion(data.data))
             }).catch(err => {
-                console.log(err)
+                dispatch(setError(err.message))
             })
     },
     getAnswer: (dispatch, id) => {
@@ -18,7 +18,7 @@ const api = {
             .then((data) => {
                 dispatch(addAnswer(data.data))
             }).catch(err => {
-                console.log(err)
+                dispatch(setError(err.message))
             })
     }
 }

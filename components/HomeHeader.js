@@ -6,8 +6,8 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, start } from '@utils/timerSlice';
 
-import commonStyles from '../styles/common';
-import utils from '../utils/utils';
+import commonStyles from '@styles/common';
+import utils from '@utils/utils';
 
 function HomeHeader() {
   const count = useSelector(state => state.timer.value)
