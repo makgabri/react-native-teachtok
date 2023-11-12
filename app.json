@@ -5,7 +5,12 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "bd9c4d06-a9ef-4cbe-9c15-ef60df82f82b"
+      }
+    }
   },
   "name": "react-native-teachtok"
 }
