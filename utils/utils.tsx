@@ -7,6 +7,10 @@ const utils = {
         } else {
             return `${Math.floor(time/3600)}h`;
         }
+    },
+
+    randomNumber: (limit: number): number => {
+        return (Math.floor(Math.random() * (limit - 0 + 1) + 0));
     }
 }
 

@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import api from '../api/fetch';
 import { useDispatch } from 'react-redux';
+import utils from '../utils/utils';
 
 interface QuestionActivityProps {
   iconBank: string;
@@ -26,7 +27,7 @@ const QuestionActivity: FC<QuestionActivityProps> = (props) => {
       {props.iconBank == 'Entypo' && <Entypo name={props.type} size={25} color={'white'} />}
       {props.iconBank == 'Feather' && <Feather name={props.type} size={25} color={'white'} />}
       {props.iconBank == 'Ionicons' && <Ionicons name={props.type} size={25} color={'white'} />}
-      <Text style={{ color: 'white' }}>{Math.floor(Math.random() * (999 - 0 + 1) + 0)}</Text>
+      <Text style={{ color: 'white' }}>{utils.randomNumber(999)}</Text>
     </TouchableOpacity>
   );
 }

@@ -7,6 +7,7 @@ import api from "../api/fetch"
 import MCQAnswers from './MCQAnswer';
 import GreenThumbsUpComponent from '../styles/thumbsupgreen';
 import RedThumbsDownComponent from '../styles/thumbsdownred';
+import utils from '../utils/utils';
 
 interface MCQProps {
     id: string;
@@ -62,7 +63,7 @@ const MCQ: FC<MCQProps> = (props) => {
                         <TouchableOpacity
                             style={[commonStyles.questionBox]}
                             onPress={() => {handleSelect(data.id)}}
-                            key={`${props.id}-${data.id}-${Math.floor(Math.random() * (999 - 0 + 1) + 0)}`}>
+                            key={`${props.id}-${data.id}-${utils.randomNumber(999)}`}>
                             <MCQAnswers state={mcqState}/>
                             <Text
                                 adjustsFontSizeToFit
