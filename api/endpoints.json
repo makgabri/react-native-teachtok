@@ -1,5 +1,6 @@
 {
     "head": "https://cross-platform.rp.devfactory.com",
     "question": "/for_you",
-    "answer": "/reveal"
+    "answer": "/reveal",
+    "wrong": "/iamwrong"
 }

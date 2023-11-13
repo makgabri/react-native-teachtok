@@ -7,6 +7,7 @@ import { Dispatch } from 'redux';
 interface Api {
     getQuestion: (dispatch: Dispatch<any>) => void;
     getAnswer: (dispatch: Dispatch<any>, id: string) => void;
+    fakeError: (dispatch: Dispatch<any>) => void;
 }
 
 const api: Api = {
@@ -22,6 +23,14 @@ const api: Api = {
         axios.get(`${endpoints.head}${endpoints.answer}?id=${id}`)
             .then((data: AxiosResponse) => {
                 dispatch(addAnswer(data.data))
+            }).catch((err: Error) => {
+                dispatch(setError(err.message))
+            })
+    },
+    fakeError: (dispatch: Dispatch<any>) => {
+        axios.get(`${endpoints.head}${endpoints.wrong}`)
+            .then((data: AxiosResponse) => {
+                // Does nothing
             }).catch((err: Error) => {
                 dispatch(setError(err.message))
             })
