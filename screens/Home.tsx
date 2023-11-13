@@ -48,6 +48,7 @@ function Home() {
       <FlatList
         style={{ flex: 1, width: '100%', height: 'auto'}}
         renderItem={({item}) => <QuestionTile data={item} tileHeight={calculatedHeight} />}
+        keyExtractor={(item, index) => {return `${item.id}-${index}`}}
         onEndReached={getNextPage}
         onEndReachedThreshold={0.8}
         snapToAlignment="start"

@@ -62,7 +62,7 @@ const MCQ: FC<MCQProps> = (props) => {
                         <TouchableOpacity
                             style={[commonStyles.questionBox]}
                             onPress={() => {handleSelect(data.id)}}
-                            key={data.id}>
+                            key={`${props.id}-${data.id}-${Math.floor(Math.random() * (999 - 0 + 1) + 0)}`}>
                             <MCQAnswers state={mcqState}/>
                             <Text
                                 adjustsFontSizeToFit
